@@ -1,2 +1,7 @@
+*-main.js
 node_modules/
-main.js
+babel.config.js
+nodesource_setup.sh
+package-lock.json
+package.json
+utils.js
