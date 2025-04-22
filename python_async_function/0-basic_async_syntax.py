@@ -2,12 +2,11 @@
 """Module for concurrent coroutines"""
 
 
-import random
-from time import sleep
+import random, asyncio
 
 
 async def wait_random(max_delay: int = 10) -> float:
     '''Sleep for few sec (float)'''
     wait = random.uniform(0, max_delay)
-    sleep(wait)
+    await asyncio.sleep(wait)
     return wait
