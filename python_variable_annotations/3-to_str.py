@@ -3,4 +3,5 @@
 
 
 def to_str(n: float) -> str:
+    '''return a strinf representation of n'''
     return f"{n}"
