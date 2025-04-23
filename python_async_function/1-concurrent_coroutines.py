@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Module for concurrent coroutines"""
 
+from typing import List
+import asyncio
+wait_random = __import__('0-basic_async_syntax').wait_random
 
-import random
-from time import sleep
 
-async def wait_random(max_delay: int = 10) -> float:
-    wait = random(0, max_delay)
-    sleep(wait)
-    return wait
+async def wait_n(n: int, max_delay: int = 10) -> List[float]:
+    '''Asynchronus function corroutine'''
+    delay: float = [wait_random(max_delay) for i in range(n)]
+    return [await delay for delay in asyncio.as_completed(delay)]
