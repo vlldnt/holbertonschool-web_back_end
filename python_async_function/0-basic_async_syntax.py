@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Module for concurrent coroutines"""
+"""
+function asynchronus wait a random delay and returns it in float value
+"""
 
 
 import random
