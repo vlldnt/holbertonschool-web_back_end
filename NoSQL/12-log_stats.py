@@ -1,6 +1,6 @@
+
 #!/usr/bin/env python3
 '''Provides some stats stored in MongoDB'''
-
 
 from pymongo import MongoClient
 
@@ -17,12 +17,12 @@ def log_stats():
     print("Methods:")
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
-        count = collection.count_documents({"method": method})
-        print(f"\tmethod {method}: {count}")
+        value = collection.count_documents({"method": method})
+        print(f"\tmethod {method}: {value}")
 
-    status_check = collection.count_documents(
+    status_log = collection.count_documents(
         {"method": "GET", "path": "/status"})
-    print(f"{status_check} status check")
+    print(f"{status_log} status check")
 
 
 if __name__ == "__main__":
