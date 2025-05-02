@@ -1,6 +1,6 @@
-
 #!/usr/bin/env python3
 '''Provides some stats stored in MongoDB'''
+
 
 from pymongo import MongoClient
 
