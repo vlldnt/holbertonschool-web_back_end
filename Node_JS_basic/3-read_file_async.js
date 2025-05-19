@@ -12,7 +12,8 @@ const countStudents = async (filecsv) => {
   }
 
   const datacsv = csv.split('\n').slice(1);
-  const data = datacsv.map((line) => line.split(','))
+  const data = datacsv
+    .map((line) => line.split(','))
     .filter((student) => student.length === 4);
 
   const studentData = data.map((student) => ({
@@ -22,14 +23,20 @@ const countStudents = async (filecsv) => {
     field: student[3],
   }));
 
-  const studentCS = studentData.filter((data) => data.field === 'CS')
+  const studentCS = studentData
+    .filter((data) => data.field === 'CS')
     .map((map) => map.firstname);
-  const studentSWE = studentData.filter((data) => data.field === 'SWE')
+  const studentSWE = studentData
+    .filter((data) => data.field === 'SWE')
     .map((map) => map.firstname);
 
   console.log(`Number of students: ${studentData.length}`);
-  console.log(`Number of students in CS: ${studentCS.length}. List: ${studentCS.join(', ')}`);
-  console.log(`Number of students in SWE: ${studentSWE.length}. List: ${studentSWE.join(', ')}`);
+  console.log(
+    `Number of students in CS: ${studentCS.length}. List: ${studentCS.join(', ')}`
+  );
+  console.log(
+    `Number of students in SWE: ${studentSWE.length}. List: ${studentSWE.join(', ')}`
+  );
 
   return { studentData, studentCS, studentSWE };
 };
