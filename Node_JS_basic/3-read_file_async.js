@@ -1,44 +1,39 @@
-// the function will read database.csv but it's async this time !
-
 const fs = require('fs');
 
-const countStudents = async (filecsv) => {
-  let csv = '';
+function countStudents(path) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, 'utf8', (error, data) => {
+      if (error) {
+        reject(new Error('Cannot load the database'));
+        return;
+      }
+      const lines = data.split('\n').filter((line) => line.length > 0);
+      if (lines.length <= 1) {
+        resolve('Number of students: 0');
+        return;
+      }
 
-  try {
-    csv = await fs.readFileSync(filecsv, 'utf-8');
-  } catch (err) {
-    throw new Error('cannot load the database');
-  }
+      const fields = {};
+      for (let i = 1; i < lines.length; i += 1) {
+        const student = lines[i].split(',');
+        if (fields[student[3]]) {
+          fields[student[3]].push(student[0]);
+        } else {
+          fields[student[3]] = [student[0]];
+        }
+      }
 
-  const datacsv = csv.split('\n').slice(1);
-  const data = datacsv
-    .map((line) => line.split(','))
-    .filter((student) => student.length === 4);
+      let output = `Number of students: ${lines.length - 1}`;
+      for (const field in fields) {
+        if (field) {
+          const list = fields[field];
+          output += `\nNumber of students in ${field}: ${list.length}. List: ${list.join(', ')}`;
+        }
+      }
 
-  const studentData = data.map((student) => ({
-    firstname: student[0],
-    lastname: student[1],
-    age: student[2],
-    field: student[3],
-  }));
-
-  const studentCS = studentData
-    .filter((data) => data.field === 'CS')
-    .map((map) => map.firstname);
-  const studentSWE = studentData
-    .filter((data) => data.field === 'SWE')
-    .map((map) => map.firstname);
-
-  console.log(`Number of students: ${studentData.length}`);
-  console.log(
-    `Number of students in CS: ${studentCS.length}. List: ${studentCS.join(', ')}`
-  );
-  console.log(
-    `Number of students in SWE: ${studentSWE.length}. List: ${studentSWE.join(', ')}`
-  );
-
-  return { studentData, studentCS, studentSWE };
-};
+      resolve(output);
+    });
+  });
+}
 
 module.exports = countStudents;
