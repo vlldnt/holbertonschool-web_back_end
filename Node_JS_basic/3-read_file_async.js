@@ -2,13 +2,13 @@ const fs = require('fs');
 
 const countStudents = (path) => {
   return new Promise((resolve, reject) => {
-    try {
-      fs.readFile(path, 'utf8', (err, data) => {
-        if (err) {
-          reject(new Error('Cannot load the database'));
-          return;
-        }
+    fs.readFile(path, 'utf8', (error, data) => {
+      if (error) {
+        reject(new Error('Cannot load the database'));
+        return;
+      }
 
+      try {
         const lines = data.split('\n').filter((line) => line.trim() !== '');
         const students = lines.slice(1);
         const fields = {};
@@ -25,10 +25,10 @@ const countStudents = (path) => {
         });
 
         resolve();
-      });
-    } catch (err) {
-      reject(new Error('Cannot load the database'));
-    }
+      } catch (processingError) {
+        reject(new Error('Cannot load the database'));
+      }
+    });
   });
 };
 
