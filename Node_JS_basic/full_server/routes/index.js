@@ -6,6 +6,6 @@ const routes = express.Router();
 
 routes.get('/', AppController.getHomepage);
 routes.get('/students', StudentsController.getAllStudents);
-routes.get('/students/:major', StudentsController.getAllStudentByMajor);
+routes.get('/students/:major', StudentsController.getAllStudentsByMajor);
 
 export default routes;
