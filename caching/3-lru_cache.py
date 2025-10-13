@@ -6,6 +6,7 @@ from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
+    '''Last Recent Used Class ingerit from BaseCaching'''
     def __init__(self):
         super().__init__()
 
