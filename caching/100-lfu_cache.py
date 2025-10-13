@@ -11,7 +11,7 @@ class LFUCache(BaseCaching):
         self.usage_count = {}
 
     def put(self, key, item):
-        '''Put LFU'''
+        '''Put LFU cachin algo'''
         if key is None or item is None:
             return
 
@@ -32,7 +32,7 @@ class LFUCache(BaseCaching):
         self.usage_count[key] = 1
 
     def get(self, key):
-        '''GET LFU'''
+        '''GET LFU cachin algo'''
         if key is None or key not in self.cache_data:
             return None
 
