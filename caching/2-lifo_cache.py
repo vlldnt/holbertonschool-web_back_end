@@ -18,6 +18,7 @@ class LIFOCache(BaseCaching):
             return
 
         if key in self.cache_data:
+            del self.cache_data[key]
             self.cache_data[key] = item
             return
 
