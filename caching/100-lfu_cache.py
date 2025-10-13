@@ -6,6 +6,7 @@ class LFUCache(BaseCaching):
     """Least Frequently Used Cache"""
 
     def __init__(self):
+        '''Init from base model'''
         super().__init__()
         self.usage_count = {}
 
