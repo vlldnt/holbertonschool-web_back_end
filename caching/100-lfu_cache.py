@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 '''Add and GET LFU Caching'''
+
+
 from base_caching import BaseCaching
+
 
 class LFUCache(BaseCaching):
     """Least Frequently Used Cache"""
@@ -22,7 +25,8 @@ class LFUCache(BaseCaching):
 
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             min_count = min(self.usage_count.values())
-            lfu_keys = [k for k, v in self.usage_count.items() if v == min_count]
+            lfu_keys = [k for k, v in self.usage_count.items()
+                        if v == min_count]
             lfu_key = lfu_keys[0]
             print(f"DISCARD: {lfu_key}")
             del self.cache_data[lfu_key]
