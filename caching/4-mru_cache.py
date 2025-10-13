@@ -23,8 +23,8 @@ class MRUCache(BaseCaching):
             return
 
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            mru_key, _ = self.cache_data.popitem(last=True)
-            print(f"DISCARD: {mru_key}")
+            mru, _ = self.cache_data.popitem(last=True)
+            print(f"DISCARD: {mru}")
 
         self.cache_data[key] = item
 
