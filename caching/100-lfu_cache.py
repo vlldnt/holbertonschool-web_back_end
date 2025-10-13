@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+'''Add and GET LFU Caching'''
 from base_caching import BaseCaching
 
 class LFUCache(BaseCaching):
@@ -9,6 +10,7 @@ class LFUCache(BaseCaching):
         self.usage_count = {}
 
     def put(self, key, item):
+        '''Put LFU'''
         if key is None or item is None:
             return
 
@@ -29,6 +31,7 @@ class LFUCache(BaseCaching):
         self.usage_count[key] = 1
 
     def get(self, key):
+        '''GET LFU'''
         if key is None or key not in self.cache_data:
             return None
 
