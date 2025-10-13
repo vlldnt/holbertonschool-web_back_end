@@ -16,7 +16,7 @@ class FIFOCache(BaseCaching):
         '''Add a new key with item, First_In First_Out'''
         if key is None or item is None:
             return
-        
+
         if key in self.cache_data:
             self.cache_data[key] = item
             return
