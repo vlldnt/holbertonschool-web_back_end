@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/Users/adrienv/Documents/Holberton/holbertonschool-web_back_end/personal_data/venv/bin/python
 '''returns log message obfuscated'''
 
 
@@ -66,3 +66,28 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         host=host,
         database=db_name
     )
+
+
+def main() -> None:
+    """the main function"""
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM users;")
+
+    header = []
+    for collumn in cur.description:
+        header.append(collumn[0])
+
+    logger = get_logger()
+
+    for line in cur:
+        info_answer = ''
+        for field, para in zip(line, header):
+            info_answer += f'{para}={field}; '
+        logger.info(info_answer)
+
+    cur.close()
+    db.close()
+
+if __name__ == '__main__':
+    main()
