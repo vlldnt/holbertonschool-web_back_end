@@ -27,7 +27,7 @@ $ pip3 install -r requirements.txt
 ## Run
 
 ```
-$ API_HOST=0.0.0.0 API_PORT=5000 python3 -m api.v1.app
+$ API_HOST=0.0.0.0 API_PORT=5501 python3 -m api.v1.app
 ```
 
 
