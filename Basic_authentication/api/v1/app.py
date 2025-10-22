@@ -7,7 +7,7 @@ from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 import os
-from api.v1.auth.auth import Auth
+from api.v1.auth.auth import Auth, BasicAuth
 
 
 app = Flask(__name__)
@@ -19,12 +19,13 @@ auth = None
 auth_type = os.getenv('AUTH_TYPE', None)
 if auth_type == 'auth':
     auth = Auth()
+if auth_type == 'basic_auth':
+    auth = BasicAuth()
 
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """ Not found handler
-    """
+    """ Not found handler"""
     return jsonify({"error": "Not found"}), 404
 
 
