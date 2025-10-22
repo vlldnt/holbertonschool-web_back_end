@@ -14,11 +14,11 @@ class Auth():
     '''Authentification class'''
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        '''Path required auth or not check method'''
+        '''Check if needed auth for a given path'''
 
         if path is None or excluded_paths is None:
             return True
-        
+
         if not path.endswith('/'):
             path += '/'
 
