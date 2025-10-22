@@ -15,7 +15,7 @@ class BasicAuth(Auth):
 
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
-        '''Extract and return a Base64 part of 
+        '''Extract and return a Base64 part of
         Authorization header for a basic auth'''
 
         if (authorization_header is None
@@ -35,9 +35,9 @@ class BasicAuth(Auth):
             return None
 
         try:
-            b64decode =  base64.b64decode(base64_authorization_header)
+            b64decode = base64.b64decode(base64_authorization_header)
             utf8decode = b64decode.decode('utf-8')
             return utf8decode
 
-        except:
+        except Exception:
             return None
