@@ -16,4 +16,5 @@ class Auth():
         return None
 
     def current_user(self, request=None) -> TypeVar('User'):
+        '''method for return current user'''
         return None
