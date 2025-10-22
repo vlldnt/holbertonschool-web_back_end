@@ -14,8 +14,19 @@ class Auth():
     '''Authentification class'''
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        '''require auth method'''
-        return False
+        '''Path required auth or not check method'''
+
+        if path is None or excluded_paths is None:
+            return True
+        
+        if not path.endswith('/'):
+            path += '/'
+
+        for excluded_path in excluded_paths:
+            if path == excluded_path:
+                return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         '''authorization header method'''
