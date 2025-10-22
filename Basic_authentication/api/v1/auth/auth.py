@@ -42,8 +42,3 @@ class Auth():
     def current_user(self, request=None) -> TypeVar('User'):
         '''method for return current user'''
         return None
-
-class BasicAuth(Auth):
-    '''Basic Auth inherit form Auth'''
-    pass
-    
