@@ -70,6 +70,9 @@ class BasicAuth(Auth):
         user = User.search({"email": user_email})
 
         for cred in user:
+            if not cred:
+                return None
+
             if cred and cred.is_valid_password(user_pwd):
                 return cred
 
