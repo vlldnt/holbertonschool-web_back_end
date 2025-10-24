@@ -70,9 +70,11 @@ class BasicAuth(Auth):
         User.load_from_file()
 
         user = User.search({"email": user_email})
+        if not user:
+            return None
 
         for cred in user:
-            if cred.is_valid_password(user_pwd):
+            if cred and cred.is_valid_password(user_pwd):
                 return cred
 
         return None
