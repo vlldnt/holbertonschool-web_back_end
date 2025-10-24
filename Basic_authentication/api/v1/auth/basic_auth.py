@@ -67,6 +67,8 @@ class BasicAuth(Auth):
                 or user_pwd is None or not isinstance(user_pwd, str)):
             return None
 
+        User.load_from_file()
+
         user = User.search({"email": user_email})
 
         for cred in user:
