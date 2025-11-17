@@ -10,6 +10,8 @@ from flask import request
 from typing import List, TypeVar
 from os import getenv
 
+User = TypeVar('User')
+
 
 class Auth():
     '''Authentification class'''
@@ -40,7 +42,7 @@ class Auth():
 
         return request.headers.get('Authorization')
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> User:
         '''method for return current user'''
         return None
 
