@@ -21,11 +21,13 @@ class Auth:
         return bcrypt.hashpw(password.encode('utf-8'), salt)
 
     def register_user(self, email: str, password: str) -> User:
-        '''Register user and return a User'''
+        """
+        Registers a new user if the email is not already taken.
+        """
+
         try:
             self._db.find_user_by(email=email)
-            raise ValueError(f'User {email} already exists')
+            raise ValueError(f"User {email} already exists")
         except NoResultFound:
-            hash_pw = self._hash_password(password)
-            registered_user = self._db.add_user(email, hash_pw)
-            return registered_user
+            hashed_pw = self._hash_password(password)
+            return self._db.add_user(email, hashed_pw)
