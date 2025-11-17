@@ -32,7 +32,7 @@ def login():
     '''Login method implemented'''
     email = request.form.get("email")
     pwd = request.form.get('password')
-    valid_login = AUTH.valid_login(email, password)
+    valid_login = AUTH.valid_login(email, pwd)
     if valid_login:
         session_id = AUTH.create_session(email)
         response = jsonify({"email": email, "message": "logged in"})
