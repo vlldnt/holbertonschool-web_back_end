@@ -9,3 +9,4 @@ main.py
 *pycache*
 venv/
 .db_User.json
+a.db
