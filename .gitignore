@@ -5,6 +5,7 @@ nodesource_setup.sh
 package-lock.json
 package.json
 *-main.py
+main.py
 *pycache*
 venv/
 .db_User.json
