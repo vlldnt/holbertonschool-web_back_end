@@ -50,11 +50,16 @@ class DB:
         except AttributeError:
             raise InvalidRequestError
 
-    def update_user(self, user_id: int, **kwargs) -> User:
+    def update_user(self, user_id: int, **kwargs) -> None:
         '''Method to update an user'''
-        user = self.find_user_by(id=user_id)
+        try:
+            user = self.find_user_by(id=user_id)
+        except NoResultFound:
+            raise NoResultFound
+
         for key, value in kwargs.items():
             if not hasattr(user, key):
                 raise ValueError
             setattr(user, key, value)
+
         self._session.commit()
