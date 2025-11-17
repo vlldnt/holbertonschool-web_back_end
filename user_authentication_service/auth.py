@@ -13,19 +13,19 @@ class Auth:
 
     def __init__(self):
         '''Init method self'''
-        self.db = DB()
+        self._db = DB()
 
     def _hash_password(self, password: str) -> bytes:
         '''Hashed password using bcrypt'''
         salt = bcrypt.gensalt()
         return bcrypt.hashpw(password.encode('utf-8'), salt)
 
-    def register_user(self, email: str, password: bytes) -> User:
+    def register_user(self, email: str, password: str) -> User:
         '''Register user and return a User'''
         try:
-            self.db.find_user_by(email=email)
+            self._db.find_user_by(email=email)
             raise ValueError(f'User {email} already exists')
         except NoResultFound:
             hash_pw = self._hash_password(password)
-            registered_user = self.db.add_user(email, hash_pw)
+            registered_user = self._db.add_user(email, hash_pw)
             return registered_user
