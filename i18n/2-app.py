@@ -4,7 +4,7 @@ Basic Flask app for i18n project.
 Exposes a single '/' route rendering templates/1-index.html With Babel.
 """
 
-from flask import Flask, render_template
+from flask import Flask, render_template, g, request
 from flask_babel import Babel
 
 
@@ -15,15 +15,22 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
+def get_locale():
+    """Get locale with a default en"""
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
+
+
 app = Flask(__name__)
 app.config.from_object(Config)
+
 babel = Babel(app)
+babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route("/", methods=["GET"])
 def index():
     """Render the 1-index.html page"""
-    return render_template("1-index.html")
+    return render_template("2-index.html")
 
 
 if __name__ == "__main__":
