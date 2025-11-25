@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+'''
+Docstring pour Unittests_and_integration_tests.test_client
+'''
+
 import unittest
 from unittest.mock import patch
 from parameterized import parameterized
