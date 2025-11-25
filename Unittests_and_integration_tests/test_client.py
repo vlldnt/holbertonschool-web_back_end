@@ -33,7 +33,7 @@ class TestGithubOrgClient(unittest.TestCase):
         """_public_repos_url uses repos_url from mocked org property"""
         payload = {
             "repos_url": "https://api.github.com/orgs/google/repos"
-            }
+        }
         with patch.object(GithubOrgClient, "org",
                           new_callable=PropertyMock,
                           return_value=payload):
@@ -58,7 +58,8 @@ class TestGithubOrgClient(unittest.TestCase):
             client = GithubOrgClient("testorg")
             self.assertEqual(client.public_repos(), ["repo1", "repo2"])
             mock_url.assert_called_once()
-            mock_get_json.assert_called_once_with("https://api.github.com/orgs/testorg/repos")
+            mock_get_json.assert_called_once_with(
+                "https://api.github.com/orgs/testorg/repos")
 
     @parameterized.expand([
         ({"license": {"key": "my_license"}}, "my_license", True),
@@ -66,7 +67,8 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_has_license(self, repo, license_key, expected):
         """has_license matches expected boolean for provided repo and license"""
-        self.assertEqual(GithubOrgClient.has_license(repo, license_key), expected)
+        self.assertEqual(GithubOrgClient.has_license(
+            repo, license_key), expected)
 
 
 @parameterized_class([
@@ -119,4 +121,5 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     def test_public_repos_with_license(self):
         """public_repos filters by license 'apache-2.0' as expected"""
         client = GithubOrgClient("google")
-        self.assertEqual(client.public_repos(license="apache-2.0"), self.apache2_repos)
+        self.assertEqual(client.public_repos(
+            license="apache-2.0"), self.apache2_repos)
