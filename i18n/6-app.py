@@ -11,7 +11,7 @@ from flask_babel import Babel
 class Config:
     '''Class Config with all the config modeule'''
     LANGUAGES = ["en", "fr"]
-    # BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
@@ -24,18 +24,35 @@ users = {
 
 
 def get_locale():
-    """Get locale with a default en"""
+    """Get locale with a default en
 
-    user_locale = request.args.get("locale")
+    The order of priority should be:
 
-    if user_locale and user_locale in app.config["LANGUAGES"]:
-        return user_locale
+    Locale from URL parameters
+    Locale from user settings
+    Locale from request header
+    Default locale
+    """
 
+    # 1. from URL
+    url_locale = request.args.get("locale")
+
+    if url_locale in app.config["LANGUAGES"]:
+        return url_locale
+
+    # 2. from user Setting
+    if g.get("user"):
+        user_locale = g.user.get("locale")
+
+        if user_locale in app.config.get("LANGUAGES"):
+            return user_locale
+    
+    # 3. from request header 
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 def get_user():
-    """Get user fonction"""
+    """Get user id fonction"""
 
     user_id = request.args.get("login_as")
 
