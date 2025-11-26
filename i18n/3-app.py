@@ -4,8 +4,8 @@ Basic Flask app for i18n project.
 Exposes a single '/' route rendering templates/1-index.html With Babel.
 """
 
-from flask import Flask, render_template, g, request
-from flask_babel import Babel, gettext as _
+from flask import Flask, render_template, request
+from flask_babel import Babel
 
 
 class Config:
