@@ -29,10 +29,8 @@ babel.init_app(app, locale_selector=get_locale)
 
 @app.route("/", methods=["GET"])
 def index():
-    home_title = _("home_title")
-    home_header = _("home_header")
-    """Render the 1-index.html page"""
-    return render_template("3-index.html", home_title=home_title, home_header=home_header)
+    """Render the 3-index.html page"""
+    return render_template("3-index.html")
 
 
 if __name__ == "__main__":
