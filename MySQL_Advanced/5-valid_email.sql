@@ -1,4 +1,6 @@
 -- CREATE TRIGGER valid_email
+DELIMITER $$
+
 CREATE TRIGGER valid_email
 BEFORE UPDATE ON users
 FOR EACH ROW
@@ -7,3 +9,5 @@ BEGIN
         SET NEW.valid_email = 0;
     END IF;
 END$$
+
+DELIMITER;
