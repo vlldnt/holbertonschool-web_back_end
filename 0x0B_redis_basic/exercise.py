@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Cache class REDIS"""
 
-from typing import Any
+from typing import Union
 import redis
 import uuid
 
@@ -14,8 +14,8 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Any) -> str:
-        """Store data with redis cache adn return UUID"""
+    def store(self, data: Union[str, bytes, int, float]) -> str:
+        """Store data with redis cache and return UUID"""
         id = str(uuid.uuid4())
         self._redis.set(id, data)
         return id
