@@ -10,3 +10,4 @@ main.py
 venv/
 .db_User.json
 a.db
+*.deb
