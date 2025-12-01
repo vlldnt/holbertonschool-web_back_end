@@ -23,28 +23,19 @@ class Cache():
         return id
 
     def get(self, key: str, fn: Optional[Callable] = None) -> Types:
-        '''Get the fomat and convert data into it'''
-
+        """Get the format and convert data into it"""
         value = self._redis.get(key)
 
-        if not value:
+        if value is None:
             return None
-        if not fn:
+        if fn is None:
             return value
-        else:
-            try:
-                return fn(value)
-            except Exception:
-                return None
+        return fn(value)
 
     def get_str(self, key: str) -> str:
-        '''Get string to parametrize get() by decode from byytes'''
-        def strfunc(bytes):
-            return bytes.decode('utf-8')
-        return self.get(key, strfunc)
+        """Get string to parametrize get() by decode from bytes"""
+        return self.get(key, lambda bytes: bytes.decode('utf-8'))
 
     def get_int(self, key: str) -> int:
-        '''Get int by decoding '''
-        def intfunc(bytes):
-            return int(bytes)
-        return self.get(key, intfunc)
+        """Get int by decoding"""
+        return self.get(key, int)
