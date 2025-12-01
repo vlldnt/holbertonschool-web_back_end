@@ -1,3 +1,4 @@
+-- CREATE TRIGGER valid_email
 CREATE TRIGGER valid_email
 BEFORE UPDATE ON users
 FOR EACH ROW
