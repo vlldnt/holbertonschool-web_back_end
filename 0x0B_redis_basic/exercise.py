@@ -4,8 +4,23 @@
 from typing import Union, Callable, Optional
 import redis
 import uuid
+from functools import wraps
+
 
 Types = Union[str, bytes, int, float]
+
+
+def count_calls(method: Callable) -> Callable:
+    '''Count number of time Cache if callabled'''
+
+    @wraps(method)
+    def wrapper(self, *args, **kwds):
+        '''Wrapper to increment redid counter before calling mehtod'''
+        key = method.__qualname__
+        self._redis.incr(key)
+        return method(self, *args, **kwds)
+
+    return wrapper
 
 
 class Cache():
@@ -16,6 +31,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Types) -> str:
         """Store data with redis cache and return UUID"""
         id = str(uuid.uuid4())
