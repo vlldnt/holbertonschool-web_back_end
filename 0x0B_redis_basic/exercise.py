@@ -14,7 +14,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Any) -> Any:
+    def store(self, data: Any) -> str:
         """Store data with redis cache adn return UUID"""
         id = str(uuid.uuid4())
         self._redis.set(id, data)
