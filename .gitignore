@@ -10,4 +10,4 @@ main.py
 venv/
 .db_User.json
 a.db
-*.debMySQL_Advanced/names.sql
+names.sql
