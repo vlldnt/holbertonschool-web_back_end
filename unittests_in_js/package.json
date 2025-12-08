@@ -3,7 +3,8 @@
     "test": "mocha ./*.test.js"
   },
   "dependencies": {
-    "mocha": "^11.7.5"
+    "mocha": "^11.7.5",
+    "sinon": "^21.0.0"
   },
   "devDependencies": {
     "chai": "^6.2.1"
