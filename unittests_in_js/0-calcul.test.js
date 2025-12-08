@@ -1,5 +1,5 @@
-import calculateNumber from "./0-calcul.js";
-import assert from "assert";
+const calculateNumber = require("./0-calcul");
+const assert = require("assert");
 
 describe("Sum two integers", function () {
   it("Must returns the sum of the two integers", function () {
