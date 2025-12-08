@@ -11,3 +11,4 @@ venv/
 .db_User.json
 a.db
 names.sql
+!unittests_in_js/package.json
