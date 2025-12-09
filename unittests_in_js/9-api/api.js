@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 app.get("/cart/:id", (req, res) => {
   const id = req.params;
   if (id instanceof String) {
-    res.send(` Payment methods for cart ${id}`);
+    res.send(`Payment methods for cart ${id}`);
   } else {
     res.status(404);
   }
