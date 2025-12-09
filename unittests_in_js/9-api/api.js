@@ -12,11 +12,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/cart/:id", (req, res) => {
-  const id = req.params;
-  if (id instanceof Number) {
+  const id = Number(req.params.id);
+
+  if (/^\d+$/.test(id)) {
     res.send(`Payment methods for cart ${id}`);
   } else {
-    res.status(404);
+    res.status(404).send("Id not found");
   }
 });
 

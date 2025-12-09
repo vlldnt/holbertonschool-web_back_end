@@ -15,3 +15,20 @@ describe("Test the express app.js", function () {
     });
   });
 });
+
+describe("Test the cart page", function () {
+  it("Testing the params is number", function (done) {
+    request("http://localhost:7865/cart/12", function (error, res, body) {
+      expect(res.statusCode).to.equal(200);
+      expect(body).to.equal("Payment methods for cart 12");
+      done();
+    });
+  });
+  it("Testing the params not number", function (done) {
+    request("http://localhost:7865/cart/Salut", function (error, res, body) {
+      expect(res.statusCode).to.equal(404);
+      expect(body).to.equal("Id not found");
+      done();
+    });
+  });
+});
