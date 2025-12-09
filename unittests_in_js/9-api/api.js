@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 
 app.get("/cart/:id", (req, res) => {
   const id = req.params;
-  if (id instanceof String) {
+  if (id instanceof Number) {
     res.send(`Payment methods for cart ${id}`);
   } else {
     res.status(404);
