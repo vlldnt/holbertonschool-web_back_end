@@ -12,3 +12,4 @@ venv/
 a.db
 names.sql
 !unittests_in_js/package.json
+!unittests_in_js/8-api/package.json
