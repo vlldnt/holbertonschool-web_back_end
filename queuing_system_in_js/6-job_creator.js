@@ -3,7 +3,7 @@ import kue from "kue";
 const queue = kue.createQueue();
 
 const jobData = {
-  phoneNumber: "0680908980",
+  phoneNumber: "0680968980",
   message: "This is your phone number.",
 };
 
