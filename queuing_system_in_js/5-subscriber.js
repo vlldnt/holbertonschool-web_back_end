@@ -18,5 +18,4 @@ subscriber.on("message", (channel, message) => {
   }
 });
 
-await subscriber.connect();
-await subscriber.subscribe("holberton school channel");
+subscriber.subscribe("holberton school channel");
