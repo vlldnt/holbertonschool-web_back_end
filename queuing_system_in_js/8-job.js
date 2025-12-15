@@ -11,14 +11,19 @@ function createPushNotificationsJobs(jobs, queue) {
           console.log(`Notification job created: ${newJob.id}`);
         }
       });
+
     newJob.on("complete", () => {
       console.log(`Notification job ${newJob.id} completed`);
     });
+
     newJob.on("fail", (error) => {
       console.log(`Notification job ${newJob.id} failed: ${error}`);
     });
-    newJob.on("progress", (prog) => {
+
+    newJob.on("progress", () => {
       console.log(`Notification job ${newJob.id} ${newJob.prog}% complete`);
     });
   });
 }
+
+export default createPushNotificationsJobs;
