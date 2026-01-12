@@ -16,3 +16,4 @@ names.sql
 !unittests_in_js/9-api/package.json
 !unittests_in_js/10-api/package.json
 redis-6.0.10/
+dump.rdb
