@@ -1,42 +1,54 @@
-# Simple APIsource bin
+<div align="center">
 
-Simple HTTP API for playing with `User` model.
+  # 🔑 Basic Authentication
 
+  **HTTP Basic Authentication for REST APIs**
 
-## Files
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+  ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 
-### `models/`
+</div>
 
-- `base.py`: base of all models of the API - handle serialization to file
-- `user.py`: user model
+---
 
-### `api/v1`
+## 📖 Description
 
-- `app.py`: entry point of the API
-- `views/index.py`: basic endpoints of the API: `/status` and `/stats`
-- `views/users.py`: all users endpoints
+This project implements HTTP Basic Authentication on a simple Flask API. You will learn the authentication process, Base64 encoding, and how to send the Authorization header.
 
+## 🎯 Learning Objectives
 
-## Setup
+- What authentication means
+- What Base64 is and how to encode a string in Base64
+- What Basic Authentication means
+- How to send the Authorization header
 
+## 🛠️ Technologies
+
+- Python 3
+- Flask
+- REST API
+
+## 🚀 Setup & Run
+
+```bash
+pip3 install -r requirements.txt
+API_HOST=0.0.0.0 API_PORT=5501 python3 -m api.v1.app
 ```
-$ pip3 install -r requirements.txt
-```
 
+## 📡 Routes
 
-## Run
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/v1/status` | Returns the status of the API |
+| `GET` | `/api/v1/stats` | Returns some stats of the API |
+| `GET` | `/api/v1/users` | Returns the list of users |
+| `GET` | `/api/v1/users/:id` | Returns a user based on the ID |
+| `DELETE` | `/api/v1/users/:id` | Deletes a user based on the ID |
+| `POST` | `/api/v1/users` | Creates a new user |
+| `PUT` | `/api/v1/users/:id` | Updates a user based on the ID |
 
-```
-$ API_HOST=0.0.0.0 API_PORT=5501 python3 -m api.v1.app
-```
+---
 
-
-## Routes
-
-- `GET /api/v1/status`: returns the status of the API
-- `GET /api/v1/stats`: returns some stats of the API
-- `GET /api/v1/users`: returns the list of users
-- `GET /api/v1/users/:id`: returns an user based on the ID
-- `DELETE /api/v1/users/:id`: deletes an user based on the ID
-- `POST /api/v1/users`: creates a new user (JSON parameters: `email`, `password`, `last_name` (optional) and `first_name` (optional))
-- `PUT /api/v1/users/:id`: updates an user based on the ID (JSON parameters: `last_name` and `first_name`)
+<div align="center">
+  <a href="../README.md">⬅️ Back to main project</a>
+</div>
